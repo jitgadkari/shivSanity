@@ -9,7 +9,12 @@ const nextConfig = {
           },
           {
             protocol: 'https',
-            hostname: 'www.course-api.com',
+            hostname: 'images.pexels.com',
+            port: '',
+          },
+          {
+            protocol: 'https',
+            hostname: 'plus.unsplash.com',
             port: '',
           },
         ],
