@@ -1,8 +1,9 @@
 import { createClient, groq } from "@/node_modules/next-sanity/dist/index";
-import { Event } from "@/types/Event";
+import {  AboutUsType } from "@/types/AboutUsType";
+import { EventType } from "@/types/EventType";
 import { Header } from "@/types/Header";
 import { Member } from "@/types/Members";
-import { Project } from "@/types/Project";
+
 
 const client = createClient({
     projectId: "3yuzvwrf",
@@ -11,19 +12,6 @@ const client = createClient({
     useCdn: false,
 });
 
-export async function getProjects(): Promise<Project[]> {
-    return client.fetch(
-        groq`*[_type == "project"]{
-            _id,
-            _createdAt,
-            name,
-            "slug": slug.current,
-            "image": image.asset->url,
-            url,
-            content
-        }`
-    );
-}
 
 export async function getMembers(): Promise<Member[]> {
     return client.fetch(
@@ -34,26 +22,52 @@ export async function getMembers(): Promise<Member[]> {
             identity,
             "slug": slug.current,
             "profileImage": profileimage.asset->url,
-            url,
-            content
         }`
     );
 }
 
-export async function getEvents(): Promise<Event[]> {
+export async function getEvents(): Promise<EventType[]> {
     return client.fetch(
         groq`*[_type == "event"]{
             _id,
             _createdAt,
             EventHeading,
-            subEventHeading,
             "images": images[].asset->url,
-            url,
-            content
+            text
         }`
     );
 }
-
+export async function getAboutUsDetail(): Promise<AboutUsType[]> {
+    return client.fetch(
+        groq`*[_type == "aboutUs"]{
+            _id,
+            _createdAt,
+            aboutUsText,
+            ourStoryText,
+            "aboutUsImage": {
+                "asset": {
+                    "_ref": aboutUsImage.asset->_ref,
+                    "_type": aboutUsImage.asset->_type
+                },
+                "alt": aboutUsImage.alt
+            },
+            "qrCodeImage": {
+                "asset": {
+                    "_ref": qrCodeImage.asset->_ref,
+                    "_type": qrCodeImage.asset->_type
+                },
+                "alt": qrCodeImage.alt
+            },
+            "images": images[]{
+                "asset": {
+                    "_ref": asset->_ref,
+                    "_type": asset->_type
+                },
+                "alt": alt
+            }
+        }`
+    );
+}
 export async function getHeader(): Promise<Header> {
     return client.fetch(
         groq`*[_type == "header"]{

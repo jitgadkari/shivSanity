@@ -20,7 +20,7 @@ const event = {
             ],
         },
         { name: "url", title: "URL", type: "url" },
-        { name: "content", title: "Content", type: "array", of: [{ type: "block" }] },
+        { name: "text", title: "text", type: "string",},
     ],
 };
 

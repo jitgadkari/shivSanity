@@ -175,3 +175,10 @@ nav {
 .teamBg{
   background-image: url("./images/bgTeam.png");
 }
+
+.aboutbg{
+  clip-path: polygon(100% 0, 100% 71%, 37% 98%, 0 63%, 0 0);
+}
+.footer-img {
+  background-image: url("./images/templatemo-wave-footer.jpg");
+}

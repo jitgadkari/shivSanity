@@ -3,7 +3,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { FaBars } from 'react-icons/fa';
 import { Link as LinkType, SocialIcon, links, social } from './data';
-import logo from '../images/logo.svg'; // Ensure this path is correct
+import logo from "../images/logo.jpeg"
 import Image from 'next/image';
 
 const Navbar: React.FC = () => {
@@ -12,22 +12,16 @@ const Navbar: React.FC = () => {
   const linksRef = useRef<HTMLUListElement>(null);
 
   const toggleLinks = () => {
-    setShowLinks(prevShowLinks => !prevShowLinks); // Toggle function
+    setShowLinks(prevShowLinks => !prevShowLinks); 
   };
 
-  useEffect(() => {
-    if (linksContainerRef.current && linksRef.current) {
-      const linksHeight = linksRef.current.getBoundingClientRect().height;
-      linksContainerRef.current.style.height = showLinks ? `${linksHeight}px` : '0px';
-    }
-  }, [showLinks]);
+
 
   return (
     <nav>
       <div className='nav-center'>
         <div className='nav-header'>
-          {/* <Image src={logo} className='logo' alt='logo' /> */}
-          <h1>Logo </h1>
+          <Image src={logo} className='w-[60px] h-[60px]' alt='logo' />
           <h1 className="text-[#4AA6E8] font-extrabold text-2xl hidden md:block">
             शिवभक्त युवक मंडळ
           </h1>
